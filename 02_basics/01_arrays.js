@@ -1,4 +1,4 @@
-// array
+// array -> doesn't store only Homogenous type data
 
 // js - array -> is re-sizeable
 const myArr = [0, 1, 2, 3, 4, 5];
