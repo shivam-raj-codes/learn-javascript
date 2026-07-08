@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Learning</title>
+</head>
+<body>
+
+    <div class="bg-black">
+        <h1 id="firstHeading" class="heading">DOM Learning</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
+
+// ============================================================
+// DOM (Document Object Model) - Introduction
+// ============================================================
+
+// Open the browser's Developer Tools (Inspect)
+// and experiment by changing HTML and CSS.
+
+// The browser provides the global `window` object.
+
+// Print the window object.
+console.log(window);
+
+// Print the document object.
+console.log(document);
+
+// Same as above.
+console.log(window.document);
+
+
+// ============================================================
+// Accessing an Element
+// ============================================================
+
+// Select an element by its id.
+
+const heading = document.getElementById("firstHeading");
+
+// Change its HTML.
+
+<!-- heading.innerHTML = "<h1>Hello</h1>"; -->
