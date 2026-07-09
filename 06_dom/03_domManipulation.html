@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+
+<script>
+    // ======================================================
+// Adding Elements to the DOM
+// ======================================================
+
+// ---------- Method 1: Using innerHTML ----------
+// Easy to understand, but not the most efficient.
+// The browser treats the string as HTML and parses it.
+
+function addLanguage(langName) {
+
+    // 1. Create a new <li> element
+    const li = document.createElement('li');
+
+    // 2. Add text inside the <li>
+    // innerHTML parses the string as HTML.
+    // Since we're only adding plain text, parsing is unnecessary.
+    li.innerHTML = langName;
+
+    // 3. Select the <ul> having class "language"
+    // and append the newly created <li> at the end.
+    document.querySelector('.language').appendChild(li);
+}
+
+addLanguage("Python");
+addLanguage("TypeScript");
+
+
+
+// ======================================================
+// Optimized Method
+// ======================================================
+
+// Instead of using innerHTML, we directly create a Text Node.
+// This avoids HTML parsing, making it slightly faster and safer.
+
+function addOptiLanguage(langName) {
+
+    // 1. Create a new <li>
+    const li = document.createElement('li');
+
+    // 2. Create a Text Node containing the language name
+    const textNode = document.createTextNode(langName);
+
+    // 3. Append the Text Node inside the <li>
+    li.appendChild(textNode);
+
+    // Now the <li> looks like:
+    // <li>Java</li>
+
+    // 4. Append the <li> into the <ul class="language">
+    document.querySelector('.language').appendChild(li);
+}
+
+addOptiLanguage("Java");
+addOptiLanguage("C++");
+
+
+// ======================================================
+// Replace an Element
+// ======================================================
+
+// Select the 2nd <li>
+
+const secondLang = document.querySelector("li:nth-child(2)");
+
+console.log(secondLang);
+
+// Method 1 (works, but parses HTML)
+// secondLang.innerHTML = "Ruby";
+
+// Method 2 (Preferred)
+
+const newLi = document.createElement("li");
+newLi.textContent = "Ruby";
+
+secondLang.replaceWith(newLi);
+
+
+// ======================================================
+// Replace using outerHTML
+// ======================================================
+
+// Replaces the entire element.
+
+const firstLang = document.querySelector("li:first-child");
+
+firstLang.outerHTML = "<li>C#</li>";
+
+
+// ======================================================
+// Remove an Element
+// ======================================================
+
+const lastLang = document.querySelector("li:last-child");
+
+console.log(lastLang);
+
+lastLang.remove();
+
+</script>
+
+</html>
+
+
+
+<!--
+
+// ======================================================
+// Difference Between the Two Methods
+// ======================================================
+ 
+Method 1 (innerHTML)
+
+"Java"
+   │
+   ▼
+HTML Parser
+   │
+   ▼
+<li>Java</li>
+
+
+Method 2 (createTextNode)
+
+"Java"
+   │
+   ▼
+Text Node
+   │
+appendChild()
+   │
+   ▼
+<li>Java</li>
+
+
+✔ innerHTML
+- Parses the string as HTML.
+- Useful when adding HTML tags.
+- Example:
+    li.innerHTML = "<b>Java</b>";
+
+Output:
+<li><b>Java</b></li>
+
+
+✔ createTextNode()
+- Treats everything as plain text.
+- No HTML parsing.
+- Slightly faster and safer.
+- Best when adding normal text.
+
+Example:
+li.appendChild(document.createTextNode("Java"));
+
+Output:
+<li>Java</li>
+
+ -->
