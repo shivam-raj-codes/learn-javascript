@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Projects</h1>
+    <button class="stop">Stop</button>
+</body>
+
+<script>
+    // its a method but can call the api.
+    // its not a core fn of javascript, only can get through browser
+    // setTimeout(function () {
+    //     console.log("shivam");
+    // }, 2000); // 2000mili-sec -> means give me 2 sec then i'll work/execute this function for one - time only.
+
+    const sayMyName = function () {
+         console.log("shivam");
+    }
+
+    setTimeout(sayMyName, 2000);
+
+
+    const changeText = function() {
+        document.querySelector('h1').innerHTML = "best js series";
+        console.log("heading changed");
+    }
+
+    // setTimeout(changeText, 2000);
+
+    // if that eevent doesn't happen after a time-out then what? or if we want to stop that event before happening.
+
+    // use -> clearTimeout(reference)
+
+    const changeMe = setTimeout(changeText, 2000);
+
+    // clearTimeout(changeMe); // -> we dont want to apply simply like that
+
+    // we want to aply this "clearTimeout" on an event
+    document.querySelector('.stop').addEventListener('click', () => {
+        clearTimeout(changeMe);
+        console.log("STOPPED on event Occur.");
+    });
+
+    
+</script>
+</html>
