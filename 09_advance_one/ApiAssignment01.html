@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Center items horizontally */
+            justify-content: center;
+            /* Center items vertically */
+
+            width: 320px;  /* & height = auto adjust */
+            padding: 20px;
+            margin-top: 20px;
+
+            border-radius: 12px;
+            background-color: #2c2c2c;
+            color: white;
+            gap: 12px;
+        }
+
+        #btn {
+            background: white;
+            border: 1px solid white;
+            border-radius: 7px;
+            padding: 10px 18px;
+            margin-top: 12px;
+            font-size: 16px;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;  /* to make profile pic inside circle */
+            object-fit: cover;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: #212121;">
+    <div class="card">
+
+    </div>
+
+    <button id="btn">click_here</button>
+</body>
+
+<script>
+    const card = document.querySelector('.card');
+    console.log(card);
+    const btn = document.getElementById('btn');
+    console.log(btn);
+
+    const requestUrl = "https://api.github.com/users/hiteshchoudhary";
+
+    btn.addEventListener("click", (e) => {
+        console.log("Button clicked");
+        const xhr_object = new XMLHttpRequest();
+
+        xhr_object.open("GET", requestUrl);
+
+        xhr_object.onreadystatechange = function () {
+            // to ptint current state (0 -> 4)
+            console.log(xhr_object.readyState);
+
+
+            if (xhr_object.readyState === 4) {
+
+                console.log(xhr_object.status);
+
+                if (xhr_object.status === 200) { // success
+
+                    // Server sends response as a JSON STRING.
+                    // JSON.parse() converts that string into a JavaScript object.
+                    const data = JSON.parse(this.responseText); // now data -> becomes type of Object => can access value
+                    console.log(xhr_object.responseText);
+
+
+                    card.innerHTML = `<img class="avatar" src = "${data.avatar_url}" alt = "profile">`
+                    card.innerHTML += `<h2> ${data.name} </h2>`;
+                    card.innerHTML += `<p>Followers: ${data.followers}</p>`
+
+
+                }
+            }
+        }
+
+        // actually sending the request, without this nothing work
+        xhr_object.send();
+    })
+
+</script>
+
+</html>
